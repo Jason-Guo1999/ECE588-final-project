@@ -1,17 +1,21 @@
-# coding=utf-8
-# Copyright 2023 The Google Research Authors.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+'''
+
+This code snippet defines a set of utility functions for evaluating image quality, particularly in the context of image processing or super-resolution models. These functions provide methods for calculating standard image quality metrics and performing necessary pre-processing steps. Here's a breakdown of each function and its purpose:
+
+list_png_in_dir(dirpath): Lists all .png files in a given directory (dirpath). It filters out files starting with 'IB' and sorts the remaining files in a specific numeric order. This is likely used to prepare a dataset for evaluation.
+
+rgb_to_ycbcr(img, max_val): Converts an RGB image to the YCbCr color space. This transformation is common in image processing, particularly in tasks like super-resolution, where working in YCbCr can be more effective.
+
+to_uint8(x, vmin, vmax): Normalizes and scales a floating-point array to the 0-255 range, converting it to an 8-bit unsigned integer format. This is a common step before calculating quality metrics on images.
+
+psnr(img_true, img_pred, y_channel): Calculates the Peak Signal-to-Noise Ratio (PSNR) between two images. If y_channel is True, it converts images to YCbCr and uses only the Y (luminance) channel. PSNR is a widely used metric to measure the quality of reconstruction of lossy compression codecs.
+
+ssim(img_true, img_pred, y_channel): Calculates the Structural Similarity Index Measure (SSIM) between two images. Similar to PSNR, it optionally converts images to YCbCr and computes the metric on the Y channel. SSIM is another common metric for assessing the perceived quality of images.
+
+crop_8x8(img): Crops an image to a size that is a multiple of 32, subtracting up to 16 pixels from each dimension if necessary. This might be used to prepare images for a model that requires input dimensions to be multiples of a certain number.
+
+The overall purpose of these functions is to facilitate the evaluation of image processing algorithms, particularly in the context of tasks like image super-resolution, where comparing the quality of output images against ground truths is crucial. These functions help in preprocessing images, converting them into the correct format, and calculating standard metrics like PSNR and SSIM.
+'''
 
 """Metrics for eval."""
 

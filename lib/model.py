@@ -1,18 +1,23 @@
-# coding=utf-8
-# Copyright 2023 The Google Research Authors.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+'''
+The provided code is a part of a machine learning model architecture, specifically designed for image super-resolution tasks. This code appears to be related to the implementation of a model described in the TecoGAN paper, which is a type of Generative Adversarial Network (GAN) used for enhancing the resolution of images. Here's a breakdown of the functions and their roles:
 
+Import Libraries: It imports TensorFlow (both version 1 and 2) and some custom operations from a module named ops.
+
+Flow Network (fnet): The fnet function defines a flow network, which is used for predicting motion in images. It consists of downsampling (encoder) and upsampling (decoder) blocks. The network applies convolutional layers with LeakyReLU activation and max pooling for downsampling, and uses transposed convolutions for upsampling.
+
+Generator Encoder (generator_f_encoder): This function builds the encoder part of the generator. It uses several residual blocks, each consisting of convolutional layers followed by ReLU activation. The residual blocks help in preserving the image information over deep networks.
+
+Generator Decoder (generator_f_decoder): This function builds the decoder part of the generator. It upsamples the encoded features to the higher resolution and then adds the bicubically upscaled low-resolution input to it. This is a common technique in super-resolution models, helping to add fine details to the upscaled image.
+
+Generator Function (generator_f): This function combines the encoder and decoder functions to form the complete generator model of the GAN. It takes low-resolution inputs and generates high-resolution outputs.
+
+Each of these components plays a crucial role in the image super-resolution process:
+
+The flow network (fnet) likely predicts how pixels move between frames in a video sequence, which is useful for temporal consistency in video super-resolution.
+The generator uses an encoder-decoder architecture, common in GANs, where the encoder compresses the input and the decoder reconstructs the high-resolution image from this compressed representation.
+The residual blocks in the encoder help in retaining the original content while adding new details in the upscaling process.
+Overall, this code represents a sophisticated deep learning architecture for enhancing the resolution and quality of images, particularly useful in video applications.
+'''
 """Model functions to reconstruct models."""
 
 import tensorflow.compat.v1 as tf

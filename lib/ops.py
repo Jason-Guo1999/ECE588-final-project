@@ -1,17 +1,22 @@
-# coding=utf-8
-# Copyright 2023 The Google Research Authors.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+'''
+This code snippet provides a collection of functions defining various operations (ops) commonly used in deep learning models, especially in the context of image processing. These operations are overwritten or customized for specific use-cases, likely for a model dealing with image super-resolution, as indicated by functions related to upscaling. Here's a summary of each function and its purpose:
+
+LeakyReLU (lrelu): Implements the LeakyReLU activation function, which is a variant of the ReLU (Rectified Linear Unit) function, allowing a small gradient when the unit is not active.
+
+Preprocess and Deprocess: These functions are used to normalize and denormalize image data, respectively. The preprocess function converts image pixel values from the range [0, 1] to [-1, 1], and deprocess does the reverse.
+
+Max Pooling (maxpool): Implements a max pooling operation, which is a form of non-linear down-sampling, reducing the dimensions of the input while retaining important information.
+
+Convolutional Transpose (conv2_tran): Defines a transposed convolution (sometimes called deconvolution) layer, used for upsampling the input. It's a key operation in models that generate or enhance images.
+
+Convolutional Layer (conv2): Defines a standard convolutional layer, a fundamental building block in many neural network architectures, particularly in image processing.
+
+Upscaling (upscale_x): Implements a custom method for upscaling images, mimicking bilinear upscaling. This could be part of a super-resolution model.
+
+Bicubic Upscaling (bicubic_x and bicubic_four): These functions implement bicubic upscaling, a common technique in image processing for enlarging images while trying to minimize the loss of image quality.
+
+Each function utilizes TensorFlow (both v1 and v2) functionalities and the tf_slim library for building layers and operations. These custom operations are likely designed to enhance the performance and output quality of specific tasks in image processing, particularly in a neural network model like TecoGAN, which is mentioned in your previous code snippets. These custom ops can provide more control over the processing pipeline, potentially leading to better results than using standard operations.
+'''
 
 """Ops overwritten."""
 
